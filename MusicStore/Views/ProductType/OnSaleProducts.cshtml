@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MusicStoreData.Models.Store.ProductType>
+
+@{
+    ViewData["Title"] = "On Sale Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+
+        <div class="row">
+            <div class="col-lg-12">
+                @if (ViewBag.NoProductsMessage != null)
+                {
+                    <div class="alert alert-danger text-center">
+                        @ViewBag.NoProductsMessage
+                    </div>
+                }
+                else
+                {
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="productGrid">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col mb-5 product-item" data-price="@item.Price">
+                                <div class="card h-100">
+
+                                    <!-- Sale Banner for each product -->
+                                    <div class="btn btn-danger" style="position: absolute; top: 10px; left: 10px;   padding: 5px; ">
+                                        SALE
+                                    </div>
+
+                                    <!-- Product image-->
+                                    <img class="card-img-top" src="@item.ProductSubCategory.SubCategoryImageUrl" alt="Product Image" />
+
+                                    <!-- Product details-->
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <!-- Product name-->
+                                            <h5 class="fw-bolder">@item.Name</h5>
+                                            <!-- Original and Discounted Price -->
+                                            <div class="product-single__price">
+                                                <span class="text-muted text-decoration-line-through">@item.Price €</span>
+                                                <br />
+                                                <span class="product-price__price product-price__price-product-template" style=" color: red;">
+                                                    @((item.Price / 2).ToString("0.00")) €
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Product actions-->
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center">
+                                            <a asp-area="" asp-action="ShowProduct" class="btn btn-warning" asp-controller="Home" asp-route-id="@item.Id">SELECT</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

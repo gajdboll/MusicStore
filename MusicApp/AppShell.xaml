@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MusicApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:MusicApp.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.TabBarBackgroundColor="DarkBlue"
+    Shell.TabBarTitleColor="White"
+    Shell.TabBarUnselectedColor="FloralWhite"
+    Title="MusicApp">
+
+    <TabBar>
+        <Tab Title="Home" Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:HomePage}" Route="home-tab" />
+        </Tab>
+        <Tab Title="Cart" Icon="cart.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:CartPage}" Route="cart-tab" />
+        </Tab>
+        <Tab Title="WishList" Icon="heart.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:FavoritesPage}" Route="wishlist-tab" />
+        </Tab>
+        <Tab Title="Profile" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:ProfilPage}" Route="profile-tab" />
+        </Tab>
+    </TabBar>
+
+</Shell>

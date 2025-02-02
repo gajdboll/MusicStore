@@ -1,0 +1,203 @@
+﻿@page
+@model RegisterModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    @if (User.IsInRole(StaticDetails.Role_Admin))
+                    {
+                        <h2 class="card-title text-center mb-4">Register - Admin Management</h2>
+                    }
+                    else
+                    {
+                        <h2 class="card-title text-center mb-4">Register</h2>
+                    }
+                    <form id="registerForm" method="post">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Required Details
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="form-floating mb-3 position-relative">
+                                            <input asp-for="Input.FirstName" id="FirstName" class="form-control" required />
+                                            <label asp-for="Input.FirstName">First Name</label>
+                                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating mb-3 position-relative">
+                                            <input asp-for="Input.LastName" id="LastName" class="form-control" required />
+                                            <label asp-for="Input.LastName">Last Name</label>
+                                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.Email" class="form-control" autocomplete="username" required placeholder="name@example.com" />
+                                            <label asp-for="Input.Email">Email</label>
+                                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" required placeholder="password" />
+                                            <label asp-for="Input.Password">Password</label>
+                                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating mb-3 position-relative">
+                                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" required placeholder="password" />
+                                            <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Additional Required Details
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="form-floating mb-3 position-relative">
+                                        <input asp-for="Input.StreetAddress" id="StreetAddress" class="form-control" aria-required="true" required />
+                                        <label asp-for="Input.StreetAddress">Street Address</label>
+                                        <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating mb-3 position-relative">
+                                        <input asp-for="Input.City" id="City" class="form-control" aria-required="true" required />
+                                        <label asp-for="Input.City">City</label>
+                                        <span asp-validation-for="Input.City" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating mb-3 position-relative">
+                                        <input asp-for="Input.State" id="State" class="form-control" aria-required="true" required />
+                                        <label asp-for="Input.State">State</label>
+                                        <span asp-validation-for="Input.State" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating mb-3 position-relative">
+                                        <input asp-for="Input.Country" id="Country" class="form-control" aria-required="true" required />
+                                        <label asp-for="Input.Country">Country</label>
+                                        <span asp-validation-for="Input.Country" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (User.IsInRole(StaticDetails.Role_Admin))
+                            {
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Admin Details
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="form-floating mb-3 position-relative">
+                                                <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-control" required>
+                                                    <option disabled selected>-- Select Role --</option>
+                                                </select>
+                                                <label asp-for="Input.Role">Role</label>
+                                                <span asp-validation-for="Input.Role" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-floating mb-3 position-relative">
+                                                <select asp-for="Input.CompanyId" asp-items="@Model.Input.CompanyList" class="form-control" required>
+                                                    <option disabled selected>-- Select Company --</option>
+                                                </select>
+                                                <label asp-for="Input.CompanyId">Company</label>
+                                                <span asp-validation-for="Input.CompanyId" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="termsCheck">
+                            <label class="form-check-label" for="termsCheck">
+                                By creating an account, you agree to our <a href="#">Terms</a> and acknowledge the <a href="#">Privacy Statement</a>.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100" id="signUpButton" disabled>Sign up</button>
+                    </form>
+
+                    <div class="row pt-3">
+                        <div class="col-md-12">
+                            <p class="divider-text d-flex pt-3">or</p>
+                        </div>
+                    </div>
+                    <section>
+                        <h6 class="text-center">Use another service to register.</h6>
+                        <hr />
+                        @{
+                            if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                            {
+                                <div>
+                                    <p>
+                                        There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                            article
+                                            about setting up this ASP.NET application to support logging in via external services
+                                        </a>.
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+                                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                    <div>
+                                        <p>
+                                            @foreach (var provider in Model.ExternalLogins!)
+                                            {
+                                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                            }
+                                        </p>
+                                    </div>
+                                </form>
+                            }
+                        }
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function checkFormCompletion() {
+            const firstName = document.getElementById('FirstName').value.trim();
+            const lastName = document.getElementById('LastName').value.trim();
+            const streetAddress = document.getElementById('StreetAddress').value.trim();
+            const city = document.getElementById('City').value.trim();
+            const state = document.getElementById('State').value.trim();
+            const country = document.getElementById('Country').value.trim();
+            const termsChecked = document.getElementById('termsCheck').checked;
+
+            const isFormComplete = firstName && lastName && streetAddress && city && state && country && termsChecked;
+
+            document.getElementById('signUpButton').disabled = !isFormComplete;
+        }
+
+        document.getElementById('termsCheck').addEventListener('change', checkFormCompletion);
+        document.getElementById('FirstName').addEventListener('input', checkFormCompletion);
+        document.getElementById('LastName').addEventListener('input', checkFormCompletion);
+        document.getElementById('StreetAddress').addEventListener('input', checkFormCompletion);
+        document.getElementById('City').addEventListener('input', checkFormCompletion);
+        document.getElementById('State').addEventListener('input', checkFormCompletion);
+        document.getElementById('Country').addEventListener('input', checkFormCompletion);
+
+        $(document).ready(function () {
+            $('#Input_Role').change(function () {
+                var selection = $('#Input_Role option:selected').text();
+                if (selection == 'Company') {
+                    $('#Input_CompanyId').show();
+                } else {
+                    $('#Input_CompanyId').hide();
+                }
+            });
+        });
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

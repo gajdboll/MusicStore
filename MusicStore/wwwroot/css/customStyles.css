@@ -1,0 +1,16 @@
+.badge {
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    font-size: 1em;
+    text-align: center;
+}
+
+.bg-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.bg-danger {
+    background-color: #dc3545;
+    color: #fff;
+}

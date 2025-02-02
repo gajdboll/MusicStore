@@ -1,0 +1,91 @@
+﻿ @model MusicStoreData.Models.CMS.Subscription
+
+@{
+    ViewData["Title"] = "Subscription";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <h2 class="card-title mb-4">@Model.Name</h2>
+                    <p class="card-text mb-4">@Model.Descriptions</p>
+                    <p class="card-text mb-4">@Model.MoreInfo</p>
+
+                    <!-- Display Success or Error Message -->
+                    <div id="resultMessage" class="alert d-none" role="alert"></div>
+
+                    <form id="subscribeForm" method="post" class="d-flex justify-content-center">
+                        @Html.AntiForgeryToken()
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Enter email & Join us" name="email" required>
+                            <button class="btn btn-primary" type="submit">@Model.ButtonName</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f7f7f7;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        border-radius: 10px;
+    }
+
+    .card-title {
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    .card-text {
+        color: #6c757d;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #ff9900;
+        }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#subscribeForm").submit(function (event) {
+            event.preventDefault();
+
+            var form = $(this);
+            var url = '@Url.Action("Subscribe", "SubscriberEmail")';
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(),
+                success: function (response) {
+                    var resultMessage = $("#resultMessage");
+                    if (response.success) {
+                        resultMessage.removeClass("d-none alert-danger").addClass("alert-success").text(response.message);
+                    } else {
+                        resultMessage.removeClass("d-none alert-success").addClass("alert-danger").text(response.message);
+                    }
+                },
+                error: function () {
+                    var resultMessage = $("#resultMessage");
+                    resultMessage.removeClass("d-none alert-success").addClass("alert-danger").text("An error occurred. Please try again.");
+                }
+            });
+        });
+    });
+</script>

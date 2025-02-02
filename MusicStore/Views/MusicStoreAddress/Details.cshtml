@@ -1,0 +1,165 @@
+﻿@model MusicStoreData.Models.CMS.MusicStoreAddress
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Details for Address</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-secondary m-2">
+                <i class="bi bi-pencil"></i>
+                Edit
+            </a>
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+             <table class="table table-bordered table-striped table-hover">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label asp-for="Name" class="form-label">Name</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Name" class="form-control" id="floatingInput" placeholder="" disabled>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Descriptions" class="form-label">Description</label>
+                        </td>
+                        <td>
+                            <div class="form-floating">
+                            <textarea asp-for="Descriptions" class="form-control" style="height: 300px;" placeholder="" disabled></textarea>
+                                <span asp-validation-for="Descriptions" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Address" class="form-label">Address</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Address" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Address2" class="form-label">Address prt II</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Address2" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="Address2" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="EmailAdres" class="form-label">Email</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="EmailAdres" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="EmailAdres" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="PhoneNumber" class="form-label">Phone</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="PhoneNumber" class="form-control" id="floatingInput" placeholder="">
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Position" class="form-label">Position</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                            <input asp-for="Position" class="form-control" id="floatingInput" placeholder="" disabled>
+                                <span asp-validation-for="Position" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <label asp-for="isActive" class="form-label">Status</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            @if (Model.isActive)
+                            {
+                                <span class="badge bg-success" disabled>Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger" disabled>Inactive</span>
+                            }                            
+                            <span asp-validation-for="isActive" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="DateAdded" class="form-label">Date of Adding</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="DateAdded" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="DateAdded" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="ModificationDate" class="form-label">Modification Date</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="ModificationDate" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="ModificationDate" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="DateOfDelete" class="form-label">Date Of Delete</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="DateOfDelete" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="DateOfDelete" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+             
+     </div>
+</div>
+
+
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+<br>
+<br>

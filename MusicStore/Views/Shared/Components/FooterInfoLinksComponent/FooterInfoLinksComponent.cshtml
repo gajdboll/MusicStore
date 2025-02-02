@@ -1,0 +1,18 @@
+﻿@model List<MusicStoreData.Models.CMS.More>
+
+<h5 class="text-uppercase">Useful links</h5>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-6 col-sm-4">
+            @if (item.Position != 1)
+            {
+                <ul class="list-unstyled">
+                    <li>
+                        <a style="color: white;" asp-controller="Home" asp-action="@item.Descriptions">@item.Name</a>
+                    </li>
+                </ul>
+            }
+        </div>
+    }
+</div>

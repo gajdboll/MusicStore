@@ -1,0 +1,74 @@
+﻿ @model IEnumerable<MusicStoreData.Models.CMS.Gallery>
+
+<div class="container" data-aos="fade-up">
+    <div class="section-title">
+        <h2>Music Shop Gallery</h2>
+        <p>That is our Music Store</p>
+    </div>
+</div>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+<style>
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+        .gallery-item img {
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: auto;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+    .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        text-align: center;
+    }
+
+    .gallery-item:hover .gallery-caption {
+        opacity: 1;
+    }
+</style>
+
+
+<div class="container mt-5">
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" asp-controller="Gallery" class="btn btn-success m-2">
+            <i class="bi bi-plus-circle"></i>
+            Add New Photo
+        </a>
+    }
+     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="gallery-item">
+                    <a href="image1.jpg" data-lightbox="gallery" data-title="@item.Name">
+                        <img src="@item.PictureUrl" alt="" class="img-fluid">
+                        <div class="gallery-caption">@item.Descriptions</div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+

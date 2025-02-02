@@ -1,0 +1,222 @@
+﻿@model MusicStoreData.Models.Users.Company
+
+@{
+    ViewData["Title"] = "Edit";
+}
+ 
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Company Details</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Upsert" asp-route-id="@Model?.Id" class="btn btn-secondary m-2">
+                <i class="bi bi-pencil"></i>
+                Edit
+            </a>
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <tbody>
+                <tr>
+                    <td>
+                        <label asp-for="Name" class="form-label">Name</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Descriptions" class="form-label">Description</label>
+                    </td>
+                    <td>
+                        <div class="form-floating">
+                            <textarea asp-for="Descriptions" class="form-control" style="height: 300px;" placeholder="" disabled></textarea>
+                            <span asp-validation-for="Descriptions" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="StreetAddress" class="form-label">StreetAddress</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="StreetAddress" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="City" class="form-label">City</label>
+                    </td>
+                    <td>
+                        <div class="form-floating">
+                            <input asp-for="City" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="State" class="form-label">State</label>
+                    </td>
+                    <td>
+                        <div class="form-floating">
+                            <input asp-for="State" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="PostalCode" class="form-label">PostalCode</label>
+                    </td>
+                    <td>
+                        <div class="form-floating">
+                            <input asp-for="PostalCode" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="CompanyWeb" class="form-label">CompanyWeb</label>
+                    </td>
+                    <td>
+                        <div class="form-floating">
+                            <input asp-for="CompanyWeb" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="CompanyWeb" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Country" class="form-label">Country</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Country" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="Country" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="NIP" class="form-label">NIP</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="NIP" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="NIP" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="CompanyPicUrl" class="form-label">CompanyPicUrl</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <img id="imagePreview" src="@Model.CompanyPicUrl" class="img-fluid img-thumbnail" alt="Image Preview" style="max-height: 100px;">
+                            <input asp-for="CompanyPicUrl" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="CompanyPicUrl" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="CompanyTel" class="form-label">CompanyTel</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="CompanyTel" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="CompanyTel" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="Position" class="form-label">Position</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Position" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="Position" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="isActive" class="form-label">Status</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            @if (Model.isActive)
+                            {
+                                <span class="badge bg-success" disabled>Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger" disabled>Deactive</span>
+                            }
+                            <span asp-validation-for="isActive" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <label asp-for="DateAdded" class="form-label">Date of Adding</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="DateAdded" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="DateAdded" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="ModificationDate" class="form-label">Modification Date</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="ModificationDate" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="ModificationDate" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="DateOfDelete" class="form-label">Date Of Delete</label>
+                    </td>
+                    <td>
+                        <div class="form-floating mb-3">
+                            <input asp-for="DateOfDelete" class="form-control" id="floatingInput" placeholder="" disabled>
+                            <span asp-validation-for="DateOfDelete" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+ 

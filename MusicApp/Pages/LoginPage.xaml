@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicApp.Pages.LoginPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+              RowSpacing="20"
+              Margin="20,50,20,40">
+
+            <Label Grid.Row="0"
+                   Text="Login" 
+                   FontAttributes="Bold" 
+                   FontSize="Large"
+                   HorizontalOptions="Center" />
+            <Image Grid.Row="1"
+                   Source="kapma.png"
+                   Aspect="AspectFit"
+                   HeightRequest="300"
+                   WidthRequest="300" />
+            <Label Grid.Row="2"
+                   FontAttributes="Bold" 
+                   Text="Welcome back, you have been missed!"
+                   HorizontalOptions="Center" />
+            <Frame Grid.Row="3"
+                   Padding="15"
+                   BackgroundColor="White">
+                <VerticalStackLayout>
+                    <Label Text="Enter your login:" 
+                           FontAttributes="Bold" 
+                           FontSize="Default"
+                           HorizontalOptions="Start" />
+                    <Entry Placeholder="Email"
+                           x:Name="EntEmail" />
+                    <Label Text="Enter your password:" 
+                           FontAttributes="Bold" 
+                           FontSize="Default"
+                           HorizontalOptions="Start" />
+                    <Entry Placeholder="Password"
+                           IsPassword="True"
+                           x:Name="EntPassword" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Grid.Row="4"
+                    Text="Sign In"
+                    x:Name="BtnSignIn"
+                    Margin="0,20,0,0" 
+                    Clicked="BtnSignIn_Clicked"/>
+ 
+             <HorizontalStackLayout Grid.Row="5"
+                                   Spacing="2"
+                                   HorizontalOptions="Center"
+                                   Margin="0,20,0,0" 
+                VerticalOptions="EndAndExpand">
+                <Label Text="Not a member?" />
+                <Label Text="Register now"
+                       TextColor="DarkBlue">
+                     <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSignUpTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

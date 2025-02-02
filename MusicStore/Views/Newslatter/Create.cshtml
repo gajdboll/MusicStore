@@ -1,0 +1,101 @@
+﻿@model MusicStoreData.Models.CMS.Newslatter
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Create New Newslatter</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <form asp-action="Create" method="post">
+            <table class="table table-bordered table-striped table-hover">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label asp-for="Name" class="form-label">Name</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Name" class="form-control" id="floatingInput" placeholder="Enter Newslatter Name">
+                                <label asp-for="Name">Enter Service Name</label>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Descriptions" class="form-label">Enter Description</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <label asp-for="Descriptions">Enter Descriptions</label>
+
+                                <textarea asp-for="Descriptions" class="form-control" id="floatingDescription" placeholder="Description"></textarea>
+                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="NewslatterButton" class="form-label">Button</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="NewslatterButton" class="form-control" id="floatingInput" placeholder="Enter NewslatterButton Name">
+                                <label asp-for="NewslatterButton">Enter NewslatterButton Name</label>
+                                <span asp-validation-for="NewslatterButton" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>
+                            <label asp-for="BackGroundImage" class="form-label">Image</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="BackGroundImage" class="form-control" id="floatingInput" placeholder="Enter BackGroundImage Name">
+                                <label asp-for="BackGroundImage">Enter BackGroundImage Name</label>
+                                <span asp-validation-for="BackGroundImage" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Placeholder" class="form-label">Placeholder</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Placeholder" class="form-control" id="floatingInput" placeholder="Enter Placeholder Name">
+                                <label asp-for="Placeholder">Enter Placeholder Name</label>
+                                <span asp-validation-for="Placeholder" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                </tbody>
+            </table>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-success m-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

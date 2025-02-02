@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "+1CSfwUmzDvfJp86Krodg97CBeoT5LHDHigPmvyz6G4=",
+  "Source": "MusicStoreData",
+  "BasePath": "_content/MusicStoreData",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "MusicStoreData\\wwwroot",
+      "Source": "MusicStoreData",
+      "ContentRoot": "C:\\Users\\Kris\\Desktop\\moj\\Kod Projektu\\MUSICStore\\MusicStoreData\\wwwroot\\",
+      "BasePath": "_content/MusicStoreData",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Kris\\Desktop\\moj\\Kod Projektu\\MUSICStore\\MusicStoreData\\wwwroot\\Images\\png\\concerts\\Screenshot 2023-05-07 0724478_csajfnfg.jpg",
+      "SourceId": "MusicStoreData",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kris\\Desktop\\moj\\Kod Projektu\\MUSICStore\\MusicStoreData\\wwwroot\\",
+      "BasePath": "_content/MusicStoreData",
+      "RelativePath": "Images/png/concerts/Screenshot 2023-05-07 0724478_csajfnfg.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\png\\concerts\\Screenshot 2023-05-07 0724478_csajfnfg.jpg"
+    }
+  ]
+}

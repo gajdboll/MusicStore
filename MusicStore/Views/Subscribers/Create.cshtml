@@ -1,0 +1,61 @@
+﻿@model MusicStoreData.Models.CMS.Subscribers
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Create New Subscribers</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <form asp-action="Create" method="post">
+            <table class="table table-bordered table-striped table-hover">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label asp-for="Name" class="form-label">Name</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Name" class="form-control" id="floatingInput" placeholder="Enter Subscriber Name">
+                                <label asp-for="Name">Enter Subscriber Name</label>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Descriptions" class="form-label">Enter Description</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <textarea asp-for="Descriptions" class="form-control" id="floatingDescription" placeholder="Description"></textarea>
+                             </div>
+                        </td>
+                    </tr>
+                
+                </tbody>
+            </table>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-success m-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

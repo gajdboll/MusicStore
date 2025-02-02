@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MusicStoreData.Models.CMS.SocialMedia>
+
+@{
+    ViewData["Title"] = "Social Media";
+}
+
+<div class="col-md-5 col-lg-4">
+    <div class="text-center text-md-right">
+        <ul class="list-unstyled list-inline">
+            @foreach (var item in Model)
+            {
+                <li class="list-inline-item">
+                    <a href="@item.Descriptions" class="text-white" style="background: none; box-shadow: none;">
+                        <img src="@item.SocialMediaImageUrl" class="img-fluid" alt="@item.Name" style="width:50px; height:50px;">
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

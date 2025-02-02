@@ -1,0 +1,56 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicApp.Pages.EditConcert" >
+    <ScrollView>
+
+        <StackLayout Padding="20">
+        <!-- Title -->
+        <Label Text="Edit Concert"
+               FontSize="Large"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               Margin="0,0,0,20" />
+
+        <!-- Concert Name -->
+        <Label Text="Concert Name" />
+        <Entry x:Name="EntName" Placeholder="Enter concert name" />
+
+        <!-- City -->
+        <Label Text="City" />
+        <Entry x:Name="EntCity" Placeholder="Enter city" />
+
+        <!-- Location -->
+        <Label Text="Location" />
+        <Entry x:Name="EntLocation" Placeholder="Enter location" />
+
+        <!-- Music Type -->
+        <Label Text="Music Type" />
+        <Entry x:Name="EntMusicType" Placeholder="Enter music type" />
+
+        <!-- Opening Time -->
+        <Label Text="Opening Time" />
+        <DatePicker x:Name="EntOpeningTime" />
+
+        <!-- Concert Image -->
+        <Label Text="Concert Image" />
+        <Image x:Name="ConcertImage" HeightRequest="200" Aspect="AspectFill" Margin="0,10" />
+
+        <!-- Choose Image Button -->
+        <Button Text="Choose Image"
+                Clicked="OnChooseImageClicked"
+                BackgroundColor="Green" 
+                TextColor="White"
+                Margin="100,0,100,30" />
+
+        <!-- Save Button -->
+        <Button Text="Save"
+                 BackgroundColor="DarkBlue"
+                 TextColor="White"
+                HorizontalOptions="FillAndExpand"
+                Clicked="OnSaveClicked"
+                Margin="100,0,100,30" />
+ 
+          </StackLayout>
+    </ScrollView>
+</ContentPage>
+

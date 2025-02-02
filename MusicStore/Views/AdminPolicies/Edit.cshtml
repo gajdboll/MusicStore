@@ -1,0 +1,71 @@
+﻿@model MusicStoreData.Models.CMS.AdminPolicies
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Edit Policy</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <form asp-action="Edit" method="post">
+            <table class="table table-bordered table-striped table-hover">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label asp-for="Name" class="form-label">Name</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Name" class="form-control" id="floatingInput" placeholder="">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Descriptions" class="form-label">Description</label>
+                        </td>
+                        <td>
+                            <div class="form-floating">
+                                <textarea asp-for="Descriptions" class="form-control" style="height: 300px;" placeholder=""></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Position" class="form-label">Position</label>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input asp-for="Position" class="form-control" id="floatingInput" placeholder="">
+                                <span asp-validation-for="Position" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success m-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+ 
+@section Scripts {
+    @{
+       
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

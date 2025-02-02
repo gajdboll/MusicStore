@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="container">
+    <!-- Acustic guitar Section -->
+    <div class="hero hero--1482987702167 hero--medium hero__overlay my-4" style="background-image: url(//ap-melody.myshopify.com/cdn/shop/files/bg-hot-cate_2000x2000.jpg?v=1613529933);">
+        <div class="hero__inner text-center py-5">
+            <div class="section-header">
+                <h2 class="h1 text-white">New Bands are coming to Town</h2>
+            </div>
+            <div class="rte-setting text-white mb-3"><p>ONLY IN THE KAPMA MUSIC SHOP</p></div>
+            <a asp-controller="Home" asp-action="ShowConcerts" class="btn btn-primary">Get In</a>
+        </div>
+    </div>
+ 
+
+    <!-- Banner Section -->
+    <div class="banner_home my-4" style="background-image: url(//ap-melody.myshopify.com/cdn/shop/files/bg-box-great_d66bad5f-dc20-4890-aa0d-7cf5af1ec242_2000x2000.jpg?v=1613529922);">
+        <div class="container">
+            <div class="text-center py-5">
+                <h4>Great Guitar Brands!</h4>
+                <h5>Whether You Want To Rock Out In Front Of Millions Or Learn Your Favorite Song, The Guitar Is The Ultimate Portable Music Making Tool.</h5>
+                <div class="my-3">
+                    <a href="/products/bass-guitar">
+                        <img src="//ap-melody.myshopify.com/cdn/shop/files/img-box-great_1000x1000.png?v=1613529922" alt="feature-row__image" class="img-fluid" />
+                    </a>
+                </div>
+                <div class="image_description"><span>50% </span>Off Best Sellers</div>
+                <a asp-controller="Home" asp-action="OnSaleProducts" class="btn btn-primary">SHOP NOW!</a>
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync("NewsAndArticleComponent")
+
+    <!-- Featured Items Section explore -->
+    <div class="container product__full my-4">
+        <div class="section-header text-center mb-4">
+            <h2>Our New Items</h2>
+        </div>
+
+        @await Component.InvokeAsync("ProductCarouselComponent", new { filterType = "new" })
+
+
+ 
+    </div>
+
+</div>
+ 
+

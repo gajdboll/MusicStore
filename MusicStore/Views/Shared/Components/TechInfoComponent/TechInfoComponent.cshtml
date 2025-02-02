@@ -1,0 +1,112 @@
+﻿@model MusicStore.ViewModels.ProductTypeVM
+<div class="tech-info">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Technical Information</h4>
+        </div>
+    </div>
+ 
+     <ul class="list-group">
+
+        @*  First we display info about the Manufacturer and type *@
+        @if (!string.IsNullOrEmpty(Model.ManufacturerName))
+        {
+        //e.g., Yamaha , Fender etc
+            <li class="list-group-item" title="e.g.Yamaha, Fender"><strong>Manufactur:</strong> @Model.ManufacturerName</li>
+        }
+
+        @if (Model.TechInfo == null ||
+        (string.IsNullOrEmpty(Model.TechInfo.BodyMaterial) &&
+        string.IsNullOrEmpty(Model.TechInfo.Pickups) &&
+        string.IsNullOrEmpty(Model.TechInfo.BridgeType) &&
+        string.IsNullOrEmpty(Model.TechInfo.FingerboardMaterial) &&
+        string.IsNullOrEmpty(Model.TechInfo.NeckMaterial) &&
+        string.IsNullOrEmpty(Model.TechInfo.Electronics) &&
+        string.IsNullOrEmpty(Model.TechInfo.StringGauge) &&
+        string.IsNullOrEmpty(Model.TechInfo.Finish) &&
+        string.IsNullOrEmpty(Model.TechInfo.AccessoriesIncluded) &&
+        string.IsNullOrEmpty(Model.TechInfo.TuningMachines)
+        /* Add other TechInfo properties here if needed */))
+        {
+            <p>No technical information available for this product.</p>
+        }
+        else
+        {
+          
+  
+            @if (!string.IsNullOrEmpty(Model.TechInfo.BodyMaterial))
+            {
+            //e.g., Mahogany, Maple
+                <li class="list-group-item" title="e.g., Mahogany, Maple"><strong>Body Material:</strong> @Model.TechInfo.BodyMaterial</li>
+            }
+            @if (!string.IsNullOrEmpty(Model.TechInfo.Pickups))
+            {
+                // e.g., Single - coil, Humbucker
+                <li class="list-group-item" title=" e.g., Single - coil, Humbucker"><strong>Pickups:</strong> @Model.TechInfo.Pickups</li>
+            }
+            @if (Model.TechInfo.Weight != 0)
+            {
+            // e.g., Weight in kg  
+                <li class="list-group-item" title=" e.g., kg , lbs"><strong>Weight:</strong> @Model.TechInfo.Weight kg</li>
+            }
+            @if (Model.TechInfo.FretboardRadius != 0)
+            {
+             // e.g., 9.5 inches
+                <li class="list-group-item" title=" e.g., 9.5 inches"><strong>Fretboard Radius:</strong> @Model.TechInfo.FretboardRadius inches</li>
+            }
+            @if (!string.IsNullOrEmpty(Model.TechInfo.BridgeType))
+            {   // e.g., Fixed, Tremolo
+                <li class="list-group-item" title="e.g., Fixed, Tremolo"><strong>Bridge:</strong> @Model.TechInfo.BridgeType</li>
+            }
+            @if (!string.IsNullOrEmpty(Model.TechInfo.FingerboardMaterial))
+            {    // e.g., Ebony, Rosewood
+                <li class="list-group-item" title="e.g., Ebony, Rosewood"><strong>Fretboard Material:</strong> @Model.TechInfo.FingerboardMaterial</li>
+            }
+            @if (!string.IsNullOrEmpty(Model.TechInfo.NeckMaterial))
+            {// e.g., Rosewood, Maple
+                <li class="list-group-item" title="e.g.,Rosewood, Maple"><strong>Neck Material:</strong> @Model.TechInfo.NeckMaterial</li>
+            }
+            @if (!string.IsNullOrEmpty(Model.TechInfo.Electronics))
+            {// e.g., Passive, Active
+                <li class="list-group-item" title="e.g., Passive, Active"><strong>Electronics:</strong> @Model.TechInfo.Electronics</li>
+            }
+            @if (!string.IsNullOrEmpty(Model.TechInfo.StringGauge))
+            { // e.g., 0.009-0.042
+                <li class="list-group-item" title="e.g., 0.009-0.042"><strong>String Gauge:</strong> @Model.TechInfo.StringGauge</li>
+            }
+            @if (!string.IsNullOrEmpty(Model.TechInfo.Finish))
+            { // e.g., Gloss, Satin , Stale, Nylon
+                <li class="list-group-item" title="e.g., Gloss, Satin , Stale, Nylon"><strong>Finish:</strong> @Model.TechInfo.Finish</li>
+            }
+            @if (!string.IsNullOrEmpty(Model.TechInfo.AccessoriesIncluded))
+            { // e.g., Gig bag, Strap
+                <li class="list-group-item" title="e.g., Gig bag, Strap"><strong>Included Accessories:</strong> @Model.TechInfo.AccessoriesIncluded</li>
+            }
+            @if (!string.IsNullOrEmpty(Model.TechInfo.TuningMachines))
+            {// e.g., Locking Tuners
+                <li class="list-group-item" title="e.g., Locking Tuners"><strong>Tuning Machines:</strong> @Model.TechInfo.TuningMachines</li>
+            }
+        }
+    </ul>
+</div>
+    
+    <!-- Form fields to add or edit TechInfo for admins -->
+    @if (User.IsInRole("Admin"))
+    {
+        <form asp-action="AddOrUpdateTechInfo" method="post">
+            @* przycisk dodaj / edytuj usun *@
+            <input type="hidden" name="ProductTypeId" value="@Model.ProductType.Id" />
+
+            <div class="form-group">
+                <label for="BodyMaterial">Body Material</label>
+                <input type="text" class="form-control" id="BodyMaterial" name="BodyMaterial" value="@Model.TechInfo?.BodyMaterial" />
+            </div>
+            <div class="form-group">
+                <label for="Pickups">Pickups</label>
+                <input type="text" class="form-control" id="Pickups" name="Pickups" value="@Model.TechInfo?.Pickups" />
+            </div>
+            <!-- Add fields for other tech info properties similarly -->
+            <button type="submit" class="btn btn-primary mt-3">Save Technical Info</button>
+        </form>
+    }
+ 

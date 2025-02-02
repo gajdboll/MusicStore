@@ -1,0 +1,143 @@
+﻿@model MusicStoreData.Models.CMS.WebHeaders
+
+@{
+    var isNew = Model == null || Model.Id == 0;
+    ViewData["Title"] = isNew ? "Create" : "Update";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">
+                @if (isNew)
+                {
+                    <text>Create Webheader</text>
+                }
+                else
+                {
+                    <text>Update Webheader</text>
+                }
+            </h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="table-responsive">
+                <form asp-action="Upsert" method="post" enctype="multipart/form-data">
+                    <input asp-for="ImageUrl" hidden />
+                    <input type="hidden" asp-for="Id" />
+
+                    <table class="table table-bordered table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label asp-for="Name" class="form-label">Category Name</label>
+                                </td>
+                                <td>
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Name" class="form-control" id="floatingName" placeholder="Name">
+                                        <label asp-for="Name">Enter Name</label>
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Descriptions" class="form-label">Description</label>
+                                </td>
+                                <td>
+                                    <div class="form-floating mb-3">
+                                        <textarea asp-for="Descriptions" class="form-control" id="floatingDescriptions" placeholder="Description"></textarea>
+                                         <span asp-validation-for="Descriptions" class="text-danger"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="ImageUrl" class="form-label">Logo URL</label>
+                                </td>
+                                <td>
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="ImageUrl" class="form-control" id="floatingInput" placeholder="" disabled>
+                                        <input type="file" name="file" class="form-control" id="floatingDescription">
+                                    </div>
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td>
+                                    <label asp-for="Position" class="form-label">Position</label>
+                                </td>
+                                <td>
+                                    <div class="form-floating mb-3">
+                                        <div class="form-floating mb-3">
+                                            @if (Model != null && Model.Id != 0)
+                                            {
+                                                <input asp-for="Position" class="form-control" id="floatingInput" placeholder="Position">
+                                            }
+                                            else
+                                            {
+                                                <input asp-for="Position" class="form-control" id="floatingInput" placeholder="Position" disabled>
+                                            }
+                                            <span asp-validation-for="Position" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-group mt-3">
+                        <input type="submit" value="Submit" class="btn btn-success m-2" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h6>Preview Of the Item</h6>
+            <div class="card">
+                <div class="card-img-top" style="background-image: url('@(string.IsNullOrEmpty(Model?.ImageUrl) ? "../.././png/webHeaders/default.webp" : Model.ImageUrl)'); background-size: cover; background-position: center; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('Descriptions', {
+
+                allowedContent: {
+                    div: {
+                        attributes: true,
+                        classes: true,
+                        styles: true
+                    }
+                },
+                toolbar: [
+                    { name: 'document', items: ['Source', '-', 'Save'] },
+                    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                    { name: 'styles', items: ['Format'] },
+                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                    { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                    { name: 'links', items: ['Link', 'Unlink'] },
+                    { name: 'insert', items: ['Image', 'Table'] },
+                    { name: 'tools', items: ['Maximize'] },
+                    { name: 'editing', items: ['Scayt'] },
+                    { name: 'others', items: ['-'] },
+                    { name: 'about', items: ['About'] }
+                ],
+                extraPlugins: 'image,table',
+                extraAllowedContent: '*(*)',
+                allowedContent: true
+            });
+        </script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

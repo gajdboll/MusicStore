@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MusicStoreData.Models.CMS.Concert>
+
+<style>
+    .card img {
+        object-fit: cover;
+         height: 400px;  
+
+    
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Concerts</h1>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" asp-controller="Concerts" class="btn btn-success m-2">
+            <i class="bi bi-plus-circle"></i>
+            Add New Entry
+        </a>
+    }
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var item in Model)
+        {
+            var modalId = $"modal{item.Id}";
+            <!-- Assuming item.Id is unique for each concert -->
+            <div class="col">
+                <div class="card">
+                    <img src="@item.Image" class="card-img-top" alt="@item.Name" style="width:400px; height:300px;">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">@item.Descriptions</p>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@modalId">More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="@modalId" tabindex="-1" aria-labelledby="modalLabel@item.Id" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel@item.Id">Concert @item.Name</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="@item.Image" class="img-fluid mb-3" alt="@item.Name" style="width:1000px; height:800px;">
+                            <p><strong>Date & Time:</strong> @item.OpeningTime</p>
+                            <p><strong>City:</strong> @item.City</p>
+                            <p><strong>Place:</strong> @item.Location</p>
+                            <p><strong>Band:</strong> @item.Name</p>
+                            <p><strong>Type:</strong> @item.MusicType</p>
+                            <p><strong>Descriptions:</strong> @item.Descriptions</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

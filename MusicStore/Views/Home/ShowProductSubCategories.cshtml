@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MusicStoreData.Models.Store.ProductSubCategory>
+
+@{
+    ViewData["Title"] = "ProductSubCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content" id="MainContent">
+    <div class="container">
+        <header class="section-header text-center">
+            <h1>@ViewData["CategoryName"] Category > Sub-Category</h1>
+
+            <p>@Model.Count() items found</p>
+        </header>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item">
+                    <a asp-controller="Home" asp-action="ShowProductCategories" asp-route-id="@ViewData["PreviousCategoryId"]">
+                        Product Category
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Product Sub-Category</li>
+            </ol>
+        </nav>
+        <div class="back-button-container">
+            <a asp-controller="Home" asp-action="ShowProductCategories" asp-route-id="@ViewData["PreviousCategoryId"]" class="btn btn-primary">
+                <i class="bi bi-skip-backward-fill"></i> Go Back
+            </a>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <a asp-action="ShowProductsFromSubCategory" class="nav-item nav-link" asp-controller="Home" asp-route-id="@item.Id">
+                            <div class="card-img-top" style="background-image: url(@item.SubCategoryImageUrl); background-size: cover; background-position: center; height: 200px;">
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@item.Name</h5>
+                                <p class="card-text">@item.Products.Count() Items</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</main>
+

@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Kris\\Desktop\\moj\\Kod Projektu\\MUSICStore\\MusicStoreData\\wwwroot\\Images\\png\\concerts\\Screenshot 2023-05-07 0724478_csajfnfg.jpg",
+      "PackagePath": "staticwebassets\\Images\\png\\concerts\\Screenshot 2023-05-07 0724478_csajfnfg.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MusicStoreData.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MusicStoreData.props",
+      "PackagePath": "build\\MusicStoreData.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MusicStoreData.props",
+      "PackagePath": "buildMultiTargeting\\MusicStoreData.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MusicStoreData.props",
+      "PackagePath": "buildTransitive\\MusicStoreData.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

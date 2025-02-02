@@ -1,0 +1,126 @@
+﻿@model MusicStore.ViewModels.ShoppingCartVM
+
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal cartTotal = 0;
+}
+
+<form method="post">
+    <br />
+    <div class="card shadow border-0">
+        <div class="card-header bg-secondary bg-gradient text-light ml-0 py-4">
+            <div class="row px-4">
+                <div class="col-6">
+                    <h5 class="pt-2 text-white">
+                        Shopping Cart
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body my-4">
+            <div class="row">
+            </div>
+            <div class="row mb-3 pb-3">
+                <div class="col-md-2 offset-md-1">
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-info text-uppercase mb-5 btn-sm"><small>Continue Shopping</small></a>
+                </div>
+                <div class="col-md-10 offset-md-1">
+
+                    @if (Model.ShoppingCartList == null || !Model.ShoppingCartList.Any())
+                    {
+                        <div class="text-center">
+                            <h5>No elements in the basket</h5>
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.ShoppingCartList)
+                        {
+                            var price = item.Product.ProductType.OnSale ? item.Product.ProductType.Price * 0.5m : item.Product.ProductType.Price;
+                            var itemTotal = price * item.Count;
+                            cartTotal += itemTotal;
+
+                            <div class="row border-bottom pb-3 align-items-center position-relative">
+
+                                <!-- Product Image with Sale Banner -->
+                                <div class="col-2 text-center">
+                                    <img src="@item.Product.ProductType.ProductSubCategory.SubCategoryImageUrl" class="rounded" width="100%" />
+                                    @if (item.Product.ProductType.OnSale)
+                                    {
+                                        <div class="btn btn-danger" style="top: 0; left: 0;">
+                                            SALE
+                                        </div>
+                                    }
+                                </div>
+
+                                <!-- Product Details -->
+                                <div class="col-4">
+                                    <h5 class="text-uppercase text-secondary"><strong>@item.Product.ProductType.Name</strong></h5>
+                                    <p><small>@item.Product.ProductType.ProductSubCategory.Name</small></p>
+                                    <p><small>@item.Product.ProductType.Manufacturer.Name</small></p>
+                                </div>
+
+                                <!-- Pricing Information -->
+                                <div class="col-3 text-center">
+                                    @if (item.Product.ProductType.OnSale)
+                                    {
+                                        <h6 class="fw-semibold">
+                                            <span class="text-muted text-decoration-line-through">@item.Product.ProductType.Price.ToString("c")</span>
+                                            <br />
+                                            <span>@price.ToString()</span>
+                                            x @item.Count
+                                        </h6>
+                                    }
+                                    else
+                                    {
+                                        <h6 class="fw-semibold">
+                                            @price.ToString() x @item.Count
+                                        </h6>
+                                    }
+                                </div>
+
+                                <!-- Quantity Controls -->
+                                <div class="col-2 text-center">
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="minus" asp-route-cartId="@item.Id" class="btn btn-outline-primary bg-gradient py-2">
+                                            <i class="bi bi-dash-square"></i>
+                                        </a>
+                                        <a asp-action="plus" asp-route-cartId="@item.Id" class="btn btn-outline-primary bg-gradient py-2">
+                                            <i class="bi bi-plus-square"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Remove Button -->
+                                <div class="col-1 text-center">
+                                    <a asp-action="remove" asp-route-cartId="@item.Id" class="btn btn-danger bg-gradient py-2">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="card-footer bg-white border-0">
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <ul class="list-group mb-4">
+                            <li class="d-flex justify-content-between align-items-center">
+                                <h5 class="text-dark fw-semibold text-uppercase"> Total </h5>
+                                <h4 class="text-dark fw-bolder">@cartTotal.ToString() (EUR)</h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 offset-md-5">
+                        <a asp-action="Summary" class="btn btn-primary border-0 bg-gradient w-100 py-2 @(Model.ShoppingCartList == null || !Model.ShoppingCartList.Any() ? "disabled" : "")">Summary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

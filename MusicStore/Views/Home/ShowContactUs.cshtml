@@ -1,0 +1,131 @@
+﻿@model IEnumerable<MusicStoreData.Models.CMS.MusicStoreAddress>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="mb-4">Contact Information</h2>
+                @foreach (var item in Model)
+                {
+                    @if(item.IsItCurrentStore)
+                    {
+                    <p><strong>Address:</strong> <span id="store-address">@item.Address, @item.PostCode @item.Country</span></p>
+                    <p><strong>Phone:</strong> @item.PhoneNumber</p>
+                    <p><strong>Email:</strong> @item.EmailAdres</p>
+                        <p><strong>Opening Hours:</strong></p>
+                        @if (item.OpeningHours == null)
+                        {
+                            <ul>
+                                <li>No opening hours available</li>
+                            </ul>
+                            <ul>
+                                <li>No opening hours available</li>
+                            </ul>
+                        }
+                        else{
+                              <ul>
+                            @foreach(var hour in item.OpeningHours)
+                            {
+                          
+                                    <li>@hour.DayOfWeek @hour.Openhours</li>
+                           
+                            }
+                            </ul>
+                        }
+                    }
+                }
+            </div>
+            @await Component.InvokeAsync("CustomerQueryComponent")
+
+
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-4 text-center">Our Location</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2433.546477206132!2d21.020051815899067!3d52.229675779759585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc6aab8c9fbb%3A0x41214d11cfd1287c!2sWarsaw%2C%20Poland!5e0!3m2!1sen!2sen!4v1631792812715!5m2!1sen!2sen"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+<section class="py-5">
+    <div class="container py-5">
+        <h2 class="mb-4 text-center">Other Store Locations</h2>
+        <div class="row">
+            @foreach (var store in Model)
+            {
+                <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@store.Name</h5>
+                            <p class="card-text">@store.Address, @store.PostCode, @store.Address2</p>
+                            <p class="card-text"><strong>Phone:</strong> @store.PhoneNumber</p>
+                            <p class="card-text"><strong>Email:</strong> @store.EmailAdres</p>
+                            <p class="card-text"><strong>Opening Hours:</strong></p>
+                            <ul class="list-unstyled">
+                                @foreach (var hour in store.OpeningHours)
+                                    {
+                                        <li>@hour.DayOfWeek @hour.Openhours</li>
+                                    }                                 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+ 
+
+</section>
+
+<style>
+    body {
+        background-color: #f7f7f7;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        transition: transform 0.3s;
+        margin-bottom: 20px;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        padding: 15px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    .card-title {
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    .card-text {
+        color: #6c757d;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #ff9900;
+        }
+
+     
+</style>

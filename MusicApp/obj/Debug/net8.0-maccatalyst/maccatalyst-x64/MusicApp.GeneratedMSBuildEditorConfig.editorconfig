@@ -1,0 +1,149 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MusicApp
+build_property.ProjectDir = C:\Users\Kris\Desktop\moj\Kod Projektu\MUSICStore\MusicApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/AddressPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.AddressPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\AddressPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\AddressPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/AdminPoliciesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.AdminPoliciesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\AdminPoliciesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\AdminPoliciesPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/CartPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.CartPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\CartPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\CartPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/ConcertPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.ConcertPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ConcertPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ConcertPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/EditConcert.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.EditConcert.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\EditConcert.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\EditConcert.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/FavoritesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.FavoritesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\FavoritesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\FavoritesPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/HomePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.HomePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\HomePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\HomePage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/LoadingPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.LoadingPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\LoadingPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\LoadingPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\LoginPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/OrderDetailPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.OrderDetailPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\OrderDetailPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\OrderDetailPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/OrderPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.OrderPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\OrderPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\OrderPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/ProfilPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.ProfilPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ProfilPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ProfilPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/ShowProduct.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.ShowProduct.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ShowProduct.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ShowProduct.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/ShowProductsFromSubCategory.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.ShowProductsFromSubCategory.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ShowProductsFromSubCategory.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ShowProductsFromSubCategory.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/ShowProductSubCategories.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.ShowProductSubCategories.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ShowProductSubCategories.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ShowProductSubCategories.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/SignUpPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.SignUpPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\SignUpPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\SignUpPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Pages/StoreInfoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Pages.StoreInfoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\StoreInfoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\StoreInfoPage.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Users/Kris/Desktop/moj/Kod Projektu/MUSICStore/MusicApp/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MusicApp.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml

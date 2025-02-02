@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MusicStore.ViewModels.OrderVM>
+
+@{
+    ViewData["Title"] = "My Order History";
+}
+@* will need to remove it
+ *@<div class="container mt-5">
+    <h4 class="text-primary">Order History</h4>
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.OrderHeader.Id</td>
+                        <td>@order.OrderHeader.OrderDate.ToString("dd/MM/yyyy")</td>
+                        <td>@order.OrderHeader.OrderStatus</td>
+                        <td>@order.OrderHeader.OrderTotal.ToString("c")</td>
+                        <td>
+                            <a href="@Url.Action("Details", new { orderId = order.OrderHeader.Id })" class="btn btn-info">
+                                View Details
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

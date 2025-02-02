@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Report Chart";
+}
+
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+        </div>
+    </div>
+    <div>
+        <img src="~/png/kapma.png" alt=" " class="img-fluid" style="max-width: 300px;">
+    </div>
+</div>
+<br>
+<h2 class="text-primary">Reports</h2>
+
+<br>
+<div class="container datepicker-controls">
+    <form asp-action="ReportChart" asp-controller="Home">
+        <div class="form-group">
+            <label class="control-label"><strong>Date From</strong></label>
+            <input type="date" name="from" />
+            <label class="control-label"><strong>Date To</strong></label>
+            <input type="date" name="end" />
+            <button type="submit" class="btn btn-primary">Select Date</button>
+        </div>
+    </form>
+</div>
+<br>
+
+<div class="container md">
+    <canvas id="myChart"></canvas>
+</div>
+<style>
+     input[type="date"] {
+        border: 1px solid #ced4da;
+        border-radius: 10px; 
+        padding: 0.375rem 0.75rem; 
+        font-size: 1rem;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); 
+    }
+
+         input[type="date"]:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);  
+        }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chartData = @Html.Raw(Json.Serialize(Model));
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: JSON.parse(chartData),  
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MusicStoreData.Models.Store.ProductCategory>
+@{
+    ViewData["Title"] = "ProductCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container" id="PageContainer">
+    <main class="main-content" id="MainContent">
+        <div class="container">
+            <header class="section-header text-center">
+                <h1>Categories</h1>
+                 <p>@Model.Count() items found</p>
+            </header>
+ 
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-12 col-md-4 col-sm-4 mb-4">
+                        <div class="collection-grid-item">
+                            <a asp-area="" asp-action="ShowProductSubCategories" class="nav-item nav-link" asp-controller="Home" asp-route-id="@item.Id">
+                                <div class="card-img-top" style="background-image: url(@item.CategoryImageUrl); background-size: cover; background-position: center; height: 200px;">
+
+                                 </div>
+                                <div class="collection-grid-item__title-wrapper text-center">
+                                    <h3 class="collection-grid-item__title">
+                                        @item.Name
+                                    </h3>
+                                    <span class="count_items">@item.ProductSubCategories.Count() Items</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </main>
+</div>

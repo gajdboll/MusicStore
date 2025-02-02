@@ -1,0 +1,33 @@
+﻿@model MusicStoreData.Models.CMS.Newslatter
+
+@{
+    ViewData["Title"] = "Newslatter";
+}
+
+<section id="footertop" class="footer-top" style="background-image: url(@Model.BackGroundImage) ;background-repeat: repeat;">
+    <div class="container">
+        <div class="footer_top_wrap">
+            <div class="row">
+                <div class=" col-xs-12">
+                    <div id="newsletter_block" class="block inline">
+                        <div class="section-header text-center">
+                            <h2>@Model.Name</h2>
+                        </div>
+                        <div class="block_content">
+                            <div class="des_newsletter">
+                                @Model.Descriptions
+                            </div>
+                            <form class="form_newsletter" action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                                <input type="email" value="" placeholder="@Model.Placeholder" name="EMAIL" id="mail" class="newsletter-input form-control" aria-label="Join our mailing list">
+                                <button id="subscribe" class="button_mini btn" type="submit">
+                                    <i class="fa fa-long-arrow-right hidden"></i>
+                                    <span>@Model.NewslatterButton</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

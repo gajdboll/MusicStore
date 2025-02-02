@@ -1,0 +1,140 @@
+﻿@model MusicStoreData.Models.CMS.TermsAndCondition
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Edit Terms And Condition</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="btn btn-primary m-2">
+                <i class="bi bi-arrow-left"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="table-responsive">
+                <form asp-action="Edit" method="post">
+                    <table class="table table-bordered table-striped table-hover">
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <label asp-for="Name" class="form-label">Name</label>
+                                </td>
+                                <td>
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Name" class="form-control" id="floatingInput" placeholder="">
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Descriptions" class="form-label">Description</label>
+                                </td>
+                                <td>
+                                    <div class="form-floating">
+                                        <textarea asp-for="Descriptions" class="form-control" style="height: 300px;" placeholder=""></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="TermsAndConditionMoreInfo" class="form-label">More Info</label>
+                                </td>
+                                <td>
+                                    <div class="form-floating">
+                                        <textarea asp-for="TermsAndConditionMoreInfo" class="form-control" style="height: 300px;" placeholder=""></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="TermsPhotoUrl" class="form-label">Image Url</label>
+                                </td>
+                                <td>
+                                    <div class="mb-3">
+                                        <input asp-for="TermsPhotoUrl" class="form-control" id="floatingInput" placeholder="" disabled>
+                                        <input type="file" name="file" asp-for="TermsPhotoUrl" class="form-control" id="imageInput">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label asp-for="Position" class="form-label">Position</label>
+                                </td>
+                                <td>
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Position" class="form-control" id="floatingInput" placeholder="">
+                                        <span asp-validation-for="Position" class="text-danger"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-success m-2" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-img-top" style="background-image: url('@Model.TermsPhotoUrl'); background-size: cover; background-position: center; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get all textarea elements on the page
+                var textareas = document.querySelectorAll('textarea');
+
+                // Loop through each textarea and replace it with CKEditor
+                textareas.forEach(function (textarea) {
+                    CKEDITOR.replace(textarea, {
+                        allowedContent: {
+                            div: {
+                                attributes: true,
+                                classes: true,
+                                styles: true
+                            }
+                        },
+                        toolbar: [
+                            { name: 'document', items: ['Source', '-', 'Save'] },
+                            { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                            { name: 'styles', items: ['Format'] },
+                            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                            { name: 'links', items: ['Link', 'Unlink'] },
+                            { name: 'insert', items: ['Image', 'Table'] },
+                            { name: 'tools', items: ['Maximize'] },
+                            { name: 'editing', items: ['Scayt'] },
+                            { name: 'others', items: ['-'] },
+                            { name: 'about', items: ['About'] }
+                        ],
+                        extraPlugins: 'image,table',
+                        extraAllowedContent: '*(*)',
+                        allowedContent: true
+                    });
+                });
+            });
+
+        </script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial")
+        ;
+    }
+}

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MusicStoreData.Models.CMS.TermsAndCondition>
+ 
+@{
+    ViewData["Title"] = "TermsAndCondition - Navigation";
+} 
+ 
+         
+<li class="nav-item dropdown">
+    @foreach (var item in Model)
+    {
+        @if (item.Position == 1)
+        {
+            <a  asp-action="ShowTermsAndCondition" class="nav-link dropdown-toggle text-light" aria-expanded="false" asp-controller="Home" asp-route-id="@item.Id">
+                <span>@item.Name</span>
+            </a>
+        }
+    }
+ 
+    <ul class="dropdown-menu">
+        @foreach (var item in Model)
+        {
+            @if (item.Position != 1)
+            {
+                <div class="fw-bold">
+                    <a asp-action="ShowTermsAndCondition" class="dropdown-item" asp-controller="Home" asp-route-id="@item.Id">@item.Name</a>
+            </div>
+            }
+        }
+    </ul>
+</li>

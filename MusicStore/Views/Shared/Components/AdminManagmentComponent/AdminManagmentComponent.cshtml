@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MusicStoreData.Models.CMS.ControlActions >
+@{
+    ViewData["Title"] = "Admin Managment";
+}
+
+<li class="nav-item dropdown">
+    <a class=" nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Managment
+    </a>
+    <ul class="dropdown-menu">
+
+        @foreach (var item in Model)
+        {
+            @if (item.Position == 1 || item.Position == 3 || item.Position == 4)
+            {
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="@item.Name" asp-action="Index">@item.Descriptions</a>
+                </li>
+            }
+            @if (item.Position == 2)
+            {
+                <li>
+                    <a class="dropdown-item" asp-area="Identity" asp-page="@item.Name">@item.Descriptions</a>
+                </li>
+ 
+            }
+            @if (item.Position == 5)
+            {
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="ReportChart">Reports</a>
+                </li>
+            }
+        }
+    </ul>
+</li>
+

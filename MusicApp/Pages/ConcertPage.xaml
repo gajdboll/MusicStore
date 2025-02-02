@@ -1,0 +1,94 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicApp.Pages.ConcertPage">
+
+    <ContentPage.Resources>
+        <!-- Header style with larger font and subtle color change -->
+        <Style x:Key="HeaderStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#2c3e50" />
+            <!-- Dark Grayish Blue -->
+            <Setter Property="Margin" Value="0,10,0,5" />
+        </Style>
+
+        <!-- Content style with slightly smaller font and neutral color -->
+        <Style x:Key="ContentStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Small" />
+            <Setter Property="TextColor" Value="#34495e" />
+            <!-- Soft Blue-Gray -->
+            <Setter Property="Margin" Value="0,0,0,10" />
+        </Style>
+
+        <!-- Button style for a consistent look across buttons -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="WidthRequest" Value="150" />
+            <Setter Property="Margin" Value="0,10,0,10" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <CollectionView x:Name="CvConcerts"
+                        SelectionMode="Single"
+                        SelectionChanged="OnEditClicked">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="20" Spacing="15">
+                        <!-- Added more padding and spacing -->
+
+                        <!-- Concert Image with rounded corners -->
+                        <Frame CornerRadius="15" Padding="0" HasShadow="True">
+                            <Image Source="{Binding Image}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="200"
+                                   HorizontalOptions="FillAndExpand" />
+                        </Frame>
+
+                        <!-- Concert Name -->
+                        <Label Text="Concert Name" Style="{StaticResource HeaderStyle}" />
+                        <Label Text="{Binding Name}" Style="{StaticResource ContentStyle}" />
+
+                        <!-- City -->
+                        <Label Text="City" Style="{StaticResource HeaderStyle}" />
+                        <Label Text="{Binding City}" Style="{StaticResource ContentStyle}" />
+
+                        <!-- Location -->
+                        <Label Text="Location" Style="{StaticResource HeaderStyle}" />
+                        <Label Text="{Binding Location}" Style="{StaticResource ContentStyle}" />
+
+                        <!-- Music Type -->
+                        <Label Text="Music Type" Style="{StaticResource HeaderStyle}" />
+                        <Label Text="{Binding MusicType}" Style="{StaticResource ContentStyle}" />
+
+                        <!-- Opening Time -->
+                        <Label Text="Opening Time" Style="{StaticResource HeaderStyle}" />
+                        <Label Text="{Binding OpeningTime, StringFormat='{0:yyyy-MM-dd HH:mm}'}" Style="{StaticResource ContentStyle}" />
+
+                        <!-- Action Buttons -->
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="20">
+                            <!-- Edit Button -->
+                            <Button Text="Edit"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    BackgroundColor="DarkBlue"  
+                                TextColor="White"
+                                    Clicked="OnEditClicked" />
+
+                                <!-- Delete Button -->
+                                <Button Text="Delete"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    BackgroundColor="OrangeRed"
+                                    TextColor="White"
+                                    Clicked="OnDeleteClicked" />
+                        </StackLayout>
+
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicApp.Pages.StoreInfoPage"
+             BackgroundColor="White">
+
+    <ScrollView>
+      
+        
+        <VerticalStackLayout
+            VerticalOptions="CenterAndExpand"
+            HorizontalOptions="CenterAndExpand"
+            Padding="20,1">
+            <Label
+                x:Name="StoreName"
+                Text="Kapma Music Store"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"/>
+            <!-- Logo -->
+            <Image 
+                Source="kapma.png"
+                WidthRequest="200"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"/>
+
+            <!-- Informacje o sklepie -->
+
+
+            <Label
+                x:Name="StoreAddress"
+                Text="{Binding Address}"  
+                FontSize="18"
+                HorizontalOptions="Center"/>
+            
+            <Label
+                x:Name="StoreAddress2"
+                Text="{Binding Address2}"  
+                FontSize="18"
+                HorizontalOptions="Center"/>
+
+            <Label
+                x:Name="StorePhone"
+                Text="{Binding PhoneNumber}"  
+                FontSize="18"
+                HorizontalOptions="Center"/>
+
+            <Label
+                x:Name="StoreEmail"
+                Text="{Binding EmailAdres}"  
+                FontSize="18"
+                HorizontalOptions="Center"/>
+
+             <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Margin="0,20">
+                <!-- Nagłówek "Opening Hours" -->
+                <Label Text="Opening Hours:" 
+           FontAttributes="Bold" 
+           Margin="0,20,0,10" 
+           HorizontalOptions="Center" />
+ 
+                 <CollectionView x:Name="OpeningHoursList"
+                    HorizontalOptions="Center">
+                    <!-- Wycentruj listę -->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
+                                <!-- Wycentruj StackLayout -->
+                                <!-- Wycentruj teksty dla każdego elementu listy -->
+                                <Label Text="{Binding DayOfWeek}" 
+                           FontAttributes="Bold" 
+                           WidthRequest="150" 
+                           HorizontalOptions="Center" />
+                                <Label Text="{Binding Openhours}" 
+                           HorizontalOptions="Center" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>  

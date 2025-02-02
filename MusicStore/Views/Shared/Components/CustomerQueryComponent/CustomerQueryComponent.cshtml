@@ -1,0 +1,31 @@
+﻿@model  MusicStoreData.Models.CMS.CustomerQuery  
+@{
+    ViewData["Title"] = "Customer Query";
+}
+
+<div class="col-lg-6">
+    <h2 class="mb-4">Write to Us</h2>
+    <form asp-action="Create" asp-controller="CustomerQuery" method="post">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Name & Surname</label>
+            <input asp-for="Name" class="form-control" id="name" placeholder="Enter your Full Name" required>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ContactNumber" class="form-label">Telephone</label>
+            <input asp-for="ContactNumber" class="form-control" id="tel" placeholder="Enter your phone" required>
+            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control" id="email" placeholder="Enter your email" required>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Descriptions" class="form-label">Message</label>
+            <textarea asp-for="Descriptions" class="form-control" id="message" rows="4" placeholder="Enter the Message" required></textarea>
+            <span asp-validation-for="Descriptions" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>

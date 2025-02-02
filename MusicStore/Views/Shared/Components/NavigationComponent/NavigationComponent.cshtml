@@ -1,0 +1,127 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<MusicStoreData.Models.CMS.WebHeaders>
+@{
+    ViewData["Title"] = "Navigation";
+}
+<style>
+    /* Custom CSS to change the color of the navbar-toggler icon */
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <div class="header-left d-flex align-items-center col-md-2 col-sm-12 col-xs-12 col-sp-12">
+            <div id="header_logo">
+                <h1 itemscope itemtype="http://schema.org/Organization">
+                    <a href="/" itemprop="url">
+                        <img src="~/png/kapma.png" width="150" alt="KAPG music - Musical Instruments Shop">
+                    </a>
+                </h1>
+            </div>
+        </div>
+
+        <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-light"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @if (User.IsInRole(StaticDetails.Role_Admin))
+                {
+                    @await Component.InvokeAsync("ControlActionComponent")
+                    @await Component.InvokeAsync("AdminManagmentComponent")
+                }
+                @{
+                    var first = Model.Where(p => p.isActive).ToList();
+                }
+                @foreach (var item in first)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink-@item.Id" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                            @if (item.Position == 1)
+                            {
+                                <span class="badge bg-danger">Sale</span>
+                            }
+                            <span>@item.Name</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-@item.Id">
+                            <div class="dropdown-inner p-3" style="width: 600px;">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            @{
+                                                var second = item.ProductCategories.Where(p => p.isActive).ToList();
+                                            }
+                                            @foreach (var header in second)
+                                            {
+                                                <div class="col-sm-6">
+                                                    <div class="mega-col-inner">
+                                                        <div class="fw-bold">
+                                                            <a asp-area="Admin" asp-action="ShowProductSubCategories" class="nav-item nav-link" asp-controller="Home" asp-route-id="@header.Id">@header.Name</a>
+                                                        </div>
+                                                        @{
+                                                            var third = header.ProductSubCategories.Where(p => p.isActive).ToList();
+                                                        }
+                                                        @foreach (var product in third)
+                                                        {
+                                                            <div class="widget-inner">
+                                                                <ul class="nav-links list-unstyled text-body-tertiary">
+                                                                    <li>
+                                                                        <a asp-area="Admin" asp-action="ShowProductsFromSubCategory" class="dropdown-item" asp-controller="Home" asp-route-id="@product.Id" title="@product.Name">
+                                                                            <span>@product.Name</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                }
+                @await Component.InvokeAsync("TermsAndConditionNavigationComponent")
+                @await Component.InvokeAsync("MoreComponent")
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <partial name="_LoginPartial" />
+                <li class="nav-item">
+                    @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                    {
+                        <a class="nav-link" asp-controller="CustomerQuery" asp-action="Index" style="color: white;">
+                            @await Component.InvokeAsync("MessagesComponent")
+                        </a>
+                    }
+                </li>
+
+                <li class="nav-item">
+                    @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                    {
+                        <a class="nav-link" asp-controller="Wishlist" asp-action="Index" style="color: white;">
+                            <i class="bi bi-heart"></i>
+                            <p class="badge bg-danger position-absolute"></p>
+                        </a>
+                    }
+                </li>
+
+                <li class="nav-item">
+                    @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                    {
+                        <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index" style="color: white;">
+                            @await Component.InvokeAsync("ShoppingCartComponent")
+                        </a>
+                    }
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>

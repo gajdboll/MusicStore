@@ -1,0 +1,36 @@
+﻿@using System.Globalization
+@model List<MusicStoreData.Models.CMS.NewsAndArticles>
+ 
+
+<div class="col-md-4 col-sm-6 col-xs-12 col-footer">
+    <div class="block_content box-footer padding-col-footer-left">
+        <div class="grid--blog block">
+            <h4 class="title_block">Recent Blog Posts</h4>
+            @foreach (var item in Model)
+            {
+                <div class="grid__item mb-3">
+                    <a href="/blogs/news/@item.Id" class="grid-image">
+                        <img src="@item.BlogImage" alt="@item.Descriptions" class="img-fluid img-thumbnail" />
+                    </a>
+                    <div class="article__grid-meta article__grid-meta--has-image">
+                        <h2 class="h3 article__title">
+                            <a href="/blogs/news/@item.Id" class="text-white">@item.Name</a>
+                        </h2>
+                        @{
+                            DateTime dateAdded;
+                            if (!DateTime.TryParse(item.DateAdded.ToString(), out dateAdded))
+                            {
+                                dateAdded = DateTime.Now;
+                            }
+                        }
+                        <span class="article__date text-muted">
+                            <time datetime="@dateAdded.ToString("yyyy-MM-dd")">
+                                @dateAdded.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@model MusicStoreData.Models.CMS.TermsAndCondition
+
+@{
+    ViewData["Title"] = "Terms And Conditions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">@Model.Name</h1>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Model.TermsPhotoUrl" class="img-fluid rounded mb-4" alt="Music Store">
+            <div class="list-group">
+                @foreach (var item in ViewBag.TermsList)
+                {
+                    <a href="@Url.Action("ShowTermsAndCondition", "Home", new { id = item.Id })" class="list-group-item list-group-item-action @((item.Id == Model.Id) ? "active" : "")">
+                        @item.Name
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h6>@Model.Descriptions</h6>
+            <p>@Model.TermsAndConditionMoreInfo</p>
+        </div>
+    </div>
+</div>

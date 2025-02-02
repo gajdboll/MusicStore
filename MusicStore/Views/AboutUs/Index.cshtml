@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MusicStoreData.Models.CMS.AboutUs>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">About Us</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="ControlAction" asp-action="Index" class="btn btn-info m-2">
+                <i class="bi bi-layer-forward"></i>Web Managment
+            </a>
+            <a asp-action="Create" class="btn btn-success m-2">
+                <i class="bi bi-plus-circle"></i>Add About Us Entry
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        <h5 class="mb-4"> @Html.DisplayNameFor(model => model.Name)</h5>
+                    </th>
+                    <th>
+                        <h5 class="mb-4"> @Html.DisplayNameFor(model => model.Descriptions)</h5>
+                    </th>
+                    <th>
+                        <h5 class="mb-4">Status</h5>
+                    </th>
+                    <th>
+                        <h5 class="mb-4">Actions</h5>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderBy(u => u.Position))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descriptions)
+
+                        </td>
+                        <td class="center-text">
+                            @if (item.isActive)
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inactive</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary m-2">Edit<i class="bi bi-pencil"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info m-2">Details<i class="bi bi-file-bar-graph"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger m-2">Delete<i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<br>
+
+

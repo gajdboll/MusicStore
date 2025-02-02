@@ -1,0 +1,118 @@
+﻿@model IEnumerable<MusicStoreData.Models.Store.ProductType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Product Type</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="ControlAction" asp-action="Index" class="btn btn-info m-2">
+                <i class="bi bi-layer-forward"></i>Web Managment
+            </a>
+            <a asp-action="Upsert" class="btn btn-success m-2">
+                <i class="bi bi-plus-circle"></i>
+                Add ProductType
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive table-container">
+        <table id="tblData" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                <tr>
+                    
+                    <th>
+                        <h5 class="mb-4">Name</h5>
+                    </th>
+                    <th>
+                        <h5 class="mb-4">Description</h5>
+                    </th>
+                    <th>
+                        <h5 class="mb-4">Status</h5>
+                    </th>
+                    <th>
+                        <h5 class="mb-4">Actions</h5>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        var dataTable;
+
+        $(document).ready(function () {
+            loadDataTable();
+        });
+
+        function loadDataTable() {
+            dataTable = $('#tblData').DataTable({
+                "ajax": {
+                    url: '/ProductType/getall',
+                    dataSrc: 'data.$values'
+                },
+                "columns": [
+                    { "data": "name", "width": "10%" },
+                    { "data": "descriptions", "width": "15%" },
+                    {
+                        data: 'isActive',
+                        width: "8%",
+                        render: function (data, type, row) {
+                            if (data) {
+                                return '<span class="badge bg-success">Active</span>';
+                            } else {
+                                return '<span class="badge bg-danger">Inactive</span>';
+                            }
+                        }
+                    },
+                    {
+                        data: 'id',
+                        render: function (data) {
+                            return `<a href="/ProductType/upsert?id=${data}" class="btn btn-secondary m-2">Edit<i class="bi bi-pencil"></i></a>
+                                                                   <a onClick=Delete('/ProductType/delete/${data}') class="btn btn-danger m-2">Delete<i class="bi bi-trash"></i></a>
+                                                                  <a href="/ProductType/details/${data}" class="btn btn-info m-2">Details<i class="bi bi-file-bar-graph"></i></a>`;
+                        },
+                        width: "40%"
+                    }
+                ]
+            });
+        }
+
+        function Delete(url) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonService: "#3085d6",
+                cancelButtonService: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            dataTable.ajax.reload();
+                            toastr.success(data.message);
+                        },
+                        error: function (err) {
+                            toastr.error("Something went wrong!");
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
+}

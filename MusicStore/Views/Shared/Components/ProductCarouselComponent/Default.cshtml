@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MusicStoreData.Models.Store.ProductType>
+
+<div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            var product = Model.ElementAt(i);
+            <div class="carousel-item @(i == 0 ? "active" : "")">
+                <a href="@Url.Action("ShowProduct", "Home", new { id = product.Id })">
+                    <img src="@product.ProductSubCategory.SubCategoryImageUrl" class="d-block w-100" alt="@product.Name">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>@product.Name</h5>
+                    <p>@product.Descriptions</p>
+                    <p class="price">@product.Price.ToString() €</p>
+                </div>
+            </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<style>
+    .carousel-item img {
+        max-height: 400px;
+        object-fit: cover;
+    }
+
+    .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .price {
+        font-size: 1.5rem;
+        color: #ffcc00;
+    }
+</style>

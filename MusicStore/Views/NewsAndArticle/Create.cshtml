@@ -1,0 +1,123 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@model MusicStoreData.Models.CMS.NewsAndArticles
+
+@{
+    if (SignInManager.IsSignedIn(User))
+    {
+        ViewData["Title"] = "Create";
+    }
+    else
+    {
+        <h2>You must be logged in to access this page.</h2>
+        return;
+    }
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="container">
+        <div class="row pt-4 pb-3">
+            <div class="col-6">
+                <h4 class="text-primary">Create New Article</h4>
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="col-6 text-end">
+                    <a asp-action="Index" class="btn btn-primary m-2">
+                    <i class="bi bi-arrow-left"></i>
+                    Back to List
+                </a>
+            </div>
+            }
+        </div>
+
+        <div class="table-responsive">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input asp-for="BlogImage" hidden />
+                <table class="table table-bordered table-striped table-hover">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label asp-for="Name" class="form-label">Name</label>
+                            </td>
+                            <td>
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Name" class="form-control" id="floatingInput" placeholder="Name">
+                                    <label asp-for="Name">Enter Article Name</label>
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="Descriptions" class="form-label">Description</label>
+                            </td>
+                            <td>
+                                <div class="form-floating mb-3">
+                                    <textarea asp-for="Descriptions" class="form-control" id="floatingDescription" placeholder="Description"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="Author" class="form-label">Author</label>
+                            </td>
+                            <td>
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Author" class="form-control" id="floatingInput" placeholder="Author">
+                                    <span asp-validation-for="Author" class="text-danger"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <label asp-for="BlogImage" class="form-label">Blog Image</label>
+                            </td>
+                            <td>
+                                <div class="form-floating mb-3">
+                                    <input type="file" name="file" asp-for="BlogImage" class="form-control" id="floatingDescription"></input>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="BtnName" class="form-label">Button Name</label>
+                            </td>
+                            <td>
+                                <div class="form-floating mb-3">
+                                    <input asp-for="BtnName" class="form-control" id="floatingDescription" placeholder="Button Name"></input>
+                                    <span asp-validation-for="BtnName" class="text-danger"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label asp-for="NewsInfo" class="form-label">News Info</label>
+                            </td>
+                            <td>
+                                <div class="form-floating mb-3">
+                                    <input asp-for="NewsInfo" class="form-control" id="floatingDescription" placeholder="News Info"></input>
+                                    <span asp-validation-for="NewsInfo" class="text-danger"></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="form-group mt-3">
+                    <input type="submit" value="Create" class="btn btn-success m-2" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @section Scripts {
+    @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+}

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Tables List";
+
+    var groupedTables = Model
+        .GroupBy(t => t[0])
+        .OrderBy(g => g.Key)
+        .ToList();
+
+    var accordionCounter = 0;
+    var tableCounter = 0;
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Tables List</h4>
+        </div>
+    </div>
+
+    <div class="row pb-4">
+        <div class="col-6">
+            <div class="input-group">
+                 <input type="text" id="tableSearch" class="form-control" style="width: 30%;" placeholder="Enter searched table..." />
+                <button id="clearSearch" class="btn btn-danger">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion" id="tablesAccordion">
+        @foreach (var group in groupedTables)
+        {
+            var sectionId = group.Key + "-" + accordionCounter;
+            accordionCounter++;
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading-@sectionId">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@sectionId" aria-expanded="false" aria-controls="collapse-@sectionId">
+                        @group.Key
+                    </button>
+                </h2>
+                <div id="collapse-@sectionId" class="accordion-collapse collapse" aria-labelledby="heading-@sectionId" data-bs-parent="#tablesAccordion">
+                    <div class="accordion-body">
+                        <div class="row justify-content-center">
+                            @foreach (var tableName in group)
+                            {
+                                tableCounter++;
+                                <div class="col-md-3 mb-3 table-item">
+                                    <div class="card h-100 border-0 shadow-none text-center" style="max-width: 250px; background: transparent;">
+                                        <a asp-controller="@tableName" asp-action="Index" class="text-decoration-none">
+                                            <img class="img-fluid" alt="No image available" src="../.././png/subcategory/default.webp" style="max-height: 200px;" />
+                                        </a>
+                                        <div class="card-body p-0 text-center">
+                                            <p class="table-name">Table: @tableName</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <p>Number of Sections: @accordionCounter</p>
+        <p>Number of Tables: @tableCounter</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('tableSearch').addEventListener('input', function () {
+            var searchQuery = this.value.toLowerCase();
+            var accordionItems = document.querySelectorAll('.accordion-item');
+
+            accordionItems.forEach(function (item) {
+                var sectionButton = item.querySelector('.accordion-button');
+                var tables = item.querySelectorAll('.table-item');
+                var foundInSection = false;
+
+                tables.forEach(function (table) {
+                    var tableName = table.querySelector('.table-name').textContent.toLowerCase();
+                    if (tableName.includes(searchQuery)) {
+                        table.style.display = '';
+                        foundInSection = true;
+                    } else {
+                        table.style.display = 'none';
+                    }
+                });
+
+                if (foundInSection) {
+                    sectionButton.classList.remove('collapsed');
+                    sectionButton.setAttribute('aria-expanded', 'true');
+                    item.querySelector('.accordion-collapse').classList.add('show');
+                } else {
+                    sectionButton.classList.add('collapsed');
+                    sectionButton.setAttribute('aria-expanded', 'false');
+                    item.querySelector('.accordion-collapse').classList.remove('show');
+                }
+            });
+        });
+
+        document.getElementById('clearSearch').addEventListener('click', function () {
+            document.getElementById('tableSearch').value = '';
+            var event = new Event('input');
+            document.getElementById('tableSearch').dispatchEvent(event);
+        });
+    </script>
+}

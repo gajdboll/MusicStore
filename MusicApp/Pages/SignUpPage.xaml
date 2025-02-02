@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicApp.Pages.SignUpPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
+              RowSpacing="20"
+              Margin="20,50,20,40">
+            <Label Grid.Row="0"
+                   Text="Registration" 
+                   FontAttributes="Bold" 
+                   FontSize="Large"
+                   HorizontalOptions="Center" />
+            <Image Grid.Row="1"
+                   Source="kapma.png"
+                   Aspect="AspectFit"
+                   HeightRequest="300"
+                   WidthRequest="300" />
+            <Label Grid.Row="2"
+                   FontAttributes="Bold" 
+                   Text="Hello there! Ready to Rock and Roll?"
+                   HorizontalOptions="Center" />
+            <Frame Grid.Row="3"
+                   Padding="15"
+                   BackgroundColor="White">
+                <VerticalStackLayout>
+                    <Label Text="First Name:" 
+                           FontAttributes="Bold" 
+                           FontSize="Default"
+                           HorizontalOptions="Fill" />
+                    <Entry Placeholder="Enter Name"
+                           x:Name="EntName" />
+
+                    <Label Text="Last Name:" 
+                           FontAttributes="Bold" 
+                           FontSize="Default"
+                           HorizontalOptions="Start" />
+                    <Entry Placeholder="Enter Last Name"
+                           x:Name="EntLastName" />
+
+                    <Label Text="Email:" 
+                           FontAttributes="Bold" 
+                           FontSize="Default"
+                           HorizontalOptions="Fill" />
+                    <Entry Placeholder="Enter Email"
+                           Keyboard="Email"
+                           x:Name="EntEmail" />
+
+                    <Label Text="Telephone:" 
+                           FontAttributes="Bold" 
+                           FontSize="Default"
+                           HorizontalOptions="Fill" />
+                    <Entry Placeholder="Enter Phone"
+                           Keyboard="Telephone"
+                           x:Name="EntPhone" />
+
+                    <Label Text="Password:" 
+                           FontAttributes="Bold" 
+                           FontSize="Default"
+                           HorizontalOptions="Fill" />
+                    <Entry Placeholder="Enter Password"
+                           IsPassword="True"
+                           x:Name="EntPassword" />
+
+
+                                <Label Text="Street Address:" 
+                   FontAttributes="Bold" 
+                   FontSize="Default"
+                   HorizontalOptions="Fill" />
+                                <Entry Placeholder="Enter Street Address"
+                   x:Name="EntStreet" />
+
+                                <Label Text="Postal Code:" 
+                   FontAttributes="Bold" 
+                   FontSize="Default"
+                   HorizontalOptions="Fill" />
+                                <Entry Placeholder="Enter Postal Code"
+                   x:Name="EntPostal" />
+
+                                <Label Text="City:" 
+                   FontAttributes="Bold" 
+                   FontSize="Default"
+                   HorizontalOptions="Fill" />
+                                <Entry Placeholder="Enter City"
+                   x:Name="EntCity" />
+
+                                <Label Text="State:" 
+                   FontAttributes="Bold" 
+                   FontSize="Default"
+                   HorizontalOptions="Fill" />
+                                <Entry Placeholder="Enter State"
+                   x:Name="EntState" />
+
+                                <Label Text="Country:" 
+                   FontAttributes="Bold" 
+                   FontSize="Default"
+                   HorizontalOptions="Fill" />
+                                <Entry Placeholder="Enter Country"
+                   x:Name="EntCountry" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Grid.Row="4"    
+                    Text="Sign Up"
+                    x:Name="BtnSignup"
+                    Margin="0,20,0,0" 
+                    Clicked="BtnSignup_Clicked"/>
+
+            <!-- Zmieniono Grid.Row na 5 dla tekstu "Already have an account?" -->
+            <HorizontalStackLayout Grid.Row="5"
+                                   Spacing="2"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="EndAndExpand"
+                                   Margin="0,20,0,0" >
+                <Label Text="Already have an account?" />
+                <Label Text="Sign In"
+                       TextColor="DarkBlue">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSignInTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

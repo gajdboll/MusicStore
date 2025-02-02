@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicApp.Pages.ShowProductsFromSubCategory">
+    <ScrollView>
+
+    <StackLayout Padding="10">
+
+        <!-- Message when no products are available -->
+        <Label x:Name="NoProductsLabel"
+               Text="No products found for the selected category."
+               FontSize="Large"
+               TextColor="Red"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               IsVisible="False" />
+
+        <!-- Product CollectionView -->
+        <CollectionView x:Name="CvProductTypes"
+                        SelectionMode="Single"
+                        SelectionChanged="CvProductTypes_SelectionChanged"
+                        Margin="10"
+                        IsVisible="False">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="2"
+                                 HorizontalItemSpacing="15"
+                                 VerticalItemSpacing="15" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border VerticalOptions="Start"
+                            StrokeShape="RoundRectangle 10,10,10,10"
+                            Padding="10"
+                            BackgroundColor="White"
+                            Stroke="LightGray">
+
+                        <Grid RowSpacing="5"
+                              RowDefinitions="Auto,Auto,Auto,Auto">
+
+                            <!-- On Sale Banner -->
+                            <Label Grid.Row="0"
+                                   Text="On Sale!"
+                                   TextColor="White"
+                                   BackgroundColor="Red"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   IsVisible="False">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding OnSale}" Value="True">
+                                        <Setter Property="IsVisible" Value="True" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
+                            <!-- Product Image -->
+                            <Frame Grid.Row="1"
+                                   Padding="0"
+                                   HeightRequest="150"
+                                   WidthRequest="150"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   HasShadow="False"
+                                    CornerRadius="10">
+                                <Image Aspect="AspectFit"
+                                       Source="{Binding Image}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Frame>
+
+                            <!-- Product Name -->
+                            <Label Grid.Row="2"
+                                   FontAttributes="Bold"
+                                   LineBreakMode="WordWrap"
+                                   MaxLines="2"
+                                   Text="{Binding Name}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+
+                            <!-- Product Price -->
+                            <Label Grid.Row="3"
+                                   Text="{Binding SupplierPrice, StringFormat='{0:C}'}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   FontSize="Caption" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,202 @@
+﻿@model IEnumerable<MusicStoreData.Models.Store.ProductType>
+@{
+    ViewData["Title"] = "From Sub Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <header class="section-header text-center">
+            <h2> @ViewData["SubCategoryName"] Sub-Category > Types</h2>
+            <p>@Model.Count() items found</p>
+        </header>
+        <!--Bread -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item">
+                    <a asp-controller="Home" asp-action="ShowProductCategories" asp-route-id="@ViewData["CategoryId"]">
+                        Product Category
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a asp-controller="Home" asp-action="ShowProductSubCategories" asp-route-id="@ViewData["CategoryId"]">
+                        Product Sub-Category
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Product Types</li>
+            </ol>
+        </nav>
+        <div class="back-button-container">
+            <a asp-controller="Home" asp-action="ShowProductCategories" asp-route-id="@ViewData["SubCategoryName"]" class="btn btn-primary">
+                <i class="bi bi-skip-backward-fill"></i> Go Back
+            </a>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar-->
+            <div class="col-lg-3">
+                <br><br>
+                <h5 class="fw-bold mb-3">Filter by Price</h5>
+                <div id="priceSlider" class="mb-4"></div>
+                <div class="d-flex justify-content-center mb-3">
+                    <input type="number" id="minPriceInput" class="form-control me-2" style="width: 80px;" value="0">
+                    <span class="align-self-center"> - </span>
+                    <input type="number" id="maxPriceInput" class="form-control ms-2" style="width: 80px;" value="1000">
+                    <span class="align-self-center ms-2">€</span>
+                </div>
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js"></script>
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css" rel="stylesheet">
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var slider = document.getElementById('priceSlider');
+                        var minPriceInput = document.getElementById('minPriceInput');
+                        var maxPriceInput = document.getElementById('maxPriceInput');
+                        var minPrice = 0;
+                        var maxPrice = 1000;
+
+                        noUiSlider.create(slider, {
+                            start: [minPrice, maxPrice],
+                            connect: true,
+                            range: {
+                                'min': 0,
+                                'max': 1000
+                            },
+                            format: {
+                                to: function (value) {
+                                    return Math.round(value);
+                                },
+                                from: function (value) {
+                                    return Number(value);
+                                }
+                            }
+                        });
+
+                        slider.noUiSlider.on('update', function (values, handle) {
+                            minPrice = values[0];
+                            maxPrice = values[1];
+                            minPriceInput.value = minPrice;
+                            maxPriceInput.value = maxPrice;
+                            filterProducts();
+                        });
+
+                        minPriceInput.addEventListener('change', function () {
+                            slider.noUiSlider.set([this.value, null]);
+                        });
+
+                        maxPriceInput.addEventListener('change', function () {
+                            slider.noUiSlider.set([null, this.value]);
+                        });
+
+                        function filterProducts() {
+                            var products = document.querySelectorAll('.product-item');
+                            products.forEach(function (product) {
+                                var price = parseFloat(product.getAttribute('data-price'));
+                                if (price >= minPrice && price <= maxPrice) {
+                                    product.style.display = 'block';
+                                } else {
+                                    product.style.display = 'none';
+                                }
+                            });
+                        }
+                    });
+                </script>
+                <br><br>
+                <!-- Filter by Manufacturer -->
+                <div class="filter-container">
+                    <h5 class="fw-bold mb-3">Filter by Brand</h5>
+                    <div class="filter-options">
+                        @foreach (var manufacturer in (IEnumerable<MusicStoreData.Models.CMS.Manufacturer>)ViewData["Manufacturers"])
+                        {
+                            <a href="@Url.Action("ShowProductsFromSubCategory", new { id = ViewData["SubCategoryId"], manufacturer = manufacturer.Name })"
+                               class="btn btn-light m-1 @(ViewData["SelectedManufacturer"]?.ToString() == manufacturer.Name ? "active" : "")">
+                                @manufacturer.Name
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <!-- Product Grid-->
+            <div class="col-lg-9">
+                @if (ViewBag.NoProductsMessage != null)
+                {
+                    <div class="alert alert-danger text-center">
+                        @ViewBag.NoProductsMessage
+                    </div>
+                }
+                else
+                {
+                    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center" id="productGrid">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-12 col-md-4 col-xl-3 mb-5 product-item" data-price="@item.Price">
+                                <div class="card h-100" style="max-width: 600px; margin: 0 auto;">
+                                    <!-- Product image-->
+                                    @{
+                                        var productImageUrl = item.ProductImages?.FirstOrDefault();
+                                        if (productImageUrl != null)
+                                        {
+                                            <img class="card-img-top" src="@productImageUrl.ImageUrl" />
+                                        }
+                                        else
+                                        {
+                                            <img class="card-img-top" src="../.././png/subcategory/default.webp" alt="No image available" />
+                                        }
+                                    }
+                                    <!-- Product details-->
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <h6 class="fw-bolder">@item.Name</h6>
+                                            <p class="product-single__price">
+                                                <span class="product-price__price product-price__price-product-template">
+                                                    <span itemprop="price" id="ProductPrice-product-template">
+                                                        <span class='money'>@item.Price €</span>
+                                                    </span>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Product actions-->
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center">
+                                            <a asp-area="" asp-action="ShowProduct" class="btn btn-warning" asp-controller="Home" asp-route-id="@item.Id">SELECT</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="section-header text-center mb-4">
+                <h2>Products On Sale</h2>
+            </div>
+            @await Component.InvokeAsync("ProductCarouselComponent", new { filterType = "sale" })
+
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .text-center {
+        text-align: center;
+    }
+
+    .filter-container {
+        margin-bottom: 20px;
+    }
+
+    .filter-options .btn {
+        margin-bottom: 5px;
+    }
+
+        .filter-options .btn.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+</style>

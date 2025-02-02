@@ -1,0 +1,161 @@
+﻿@model IEnumerable<Reviews>
+
+<div class="reviews-section">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Customer Reviews</h4>
+        </div>
+    </div>
+     @if (Model.Any())
+    {
+        @foreach (var review in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <p class="card-text"><b>Rating:</b></p>
+                        <div class="star-rating">
+                            @for (int i = 1; i <= review.Rating; i++)
+                            {
+                                <i class="bi bi-star-fill" style="color: gold;"></i>
+                            }
+                            @for (int i = review.Rating + 1; i <= 10; i++)
+                            {
+                                <i class="bi bi-star" style="color: #ddd;"></i>
+                            }
+                            @review.Rating/10
+                        </div>
+                    </h5>
+                    <p class="card-text"><b>Comment: </b>@review.Comment</p>
+                    <p class="card-text">
+                        <b>Review by: </b> @review.User.FirstName on
+                        @(review.DateAdded.HasValue ? review.DateAdded.Value.ToString("MMMM dd, yyyy") : "N/A")
+                    </p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No reviews yet. Be the first to review this product type!</p>
+    }
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <div class="mt-5">
+            <h4>Add Your Review</h4>
+            <form asp-action="AddReview" asp-controller="ProductType" method="post">
+                <input type="hidden" name="productTypeId" value="@ViewBag.ProductTypeId" />
+
+                <!-- Rating Slider -->
+                <div id="ratingSlider" class="slider-container">
+                    <label for="rating" class="form-control me-2">
+                        <h6><strong>Rating:</strong>
+                            <span id="ratingValue">5</span>
+                        </h6>
+                    </label>
+                    <div class="container">
+                        <input type="range" min="0" max="10" value="5" class="slider" id="rating" name="rating">
+                    </div>
+                </div>
+
+                <!-- Star Rating Display -->
+                <div id="starRating" class="mb-4">
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                </div>
+
+                <!-- Comment Section -->
+                <div class="form-group mt-3">
+                    <label for="Comment"><b>Comment</b></label><br>
+                    <textarea name="comment" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Submit Review</button>
+            </form>
+        </div>
+
+        <style>
+            .slider-container {
+                margin-bottom: 20px;
+            }
+
+            #starRating i {
+                font-size: 30px;
+                margin-right: 10px;
+            }
+
+            .slider {
+                width: 45%;
+                height: 10px;
+                appearance: none;
+                background: #007bff;
+                outline: none;
+                opacity: 0.9;
+                transition: opacity .15s ease-in-out;
+                border-radius: 5px;
+                margin-right: 10px;
+            }
+
+                .slider::-webkit-slider-thumb {
+                    appearance: none;
+                    width: 20px;
+                    height: 20px;
+                    background: #fff;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                }
+
+                .slider::-moz-range-thumb {
+                    width: 20px;
+                    height: 20px;
+                    background: #fff;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const slider = document.getElementById("rating");
+                const output = document.getElementById("ratingValue");
+                const starRating = document.getElementById("starRating");
+                const stars = starRating.querySelectorAll("i");
+
+                // Function to update stars based on slider value
+                function updateStars(rating) {
+                    stars.forEach((star, index) => {
+                        if (index < rating) {
+                            star.classList.remove('bi-star');
+                            star.classList.add('bi-star-fill');
+                            star.style.color = 'gold';
+                        } else {
+                            star.classList.remove('bi-star-fill');
+                            star.classList.add('bi-star');
+                            star.style.color = '#ddd';
+                        }
+                    });
+                }
+
+                // Initial setup
+                output.innerHTML = slider.value;
+                updateStars(slider.value);
+
+                // Update stars and value on slider input
+                slider.oninput = function () {
+                    output.innerHTML = this.value;
+                    updateStars(this.value);
+                };
+            });
+        </script>
+    }
+</div> 

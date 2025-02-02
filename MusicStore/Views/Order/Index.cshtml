@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+﻿@{
+    var status = Context.Request.Query["status"];
+    var pending = "text-primary";
+    var inprocess = "text-primary";
+    var completed = "text-primary";
+    var approved = "text-primary";
+    var all = "text-primary";
+
+    switch (status)
+    {
+        case "pending":
+            pending = "active text-white bg-primary";
+            break;
+        case "inprocess":
+            inprocess = "active text-white bg-primary";
+            break;
+        case "completed":
+            completed = "active text-white bg-primary";
+            break;
+        case "approved":
+            approved = "active text-white bg-primary";
+            break;
+        default:
+            all = "active text-white bg-primary";
+            break;
+
+    }
+
+}
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h4 class="text-primary">Order List</h4>
+        </div>
+        <div class="col-md-4 offset-md-2 text-right">
+            <div class="d-flex">
+                <form method="post" asp-controller="ExportExcel" asp-action="ExportExcel" class="mr-2">
+                    <input type="hidden" name="status" value="@Context.Request.Query["status"]" />
+                    <button type="submit" class="btn btn-danger btn-sm my-1">Excel Export</button>
+                </form>
+                <form method="post" asp-controller="Document" asp-action="GenerateDocument">
+                    <input type="hidden" name="status" value="@Context.Request.Query["status"]" />
+                    <button type="submit" class="btn btn-primary btn-sm my-1">Pdf Export</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <div class="d-flex justify-content-between pb-5 pt-2">
+            <span></span>
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="inprocess">
+                <li class="list-group-item @inprocess">In Process</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="pending">
+                <li class="list-group-item @pending">Pending</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="completed">
+                <li class="list-group-item @completed">Completed</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="approved">
+                <li class="list-group-item @approved">Approved</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="all">
+                <li class="list-group-item @all">All</li>
+                </a>
+            </ul>
+        </div>
+
+        <table id="tblData" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var url = window.location.search;
+            if (url.includes("inprocess")) {
+                loadDataTable("inprocess");
+            }
+            else if (url.includes("completed")) {
+                loadDataTable("completed");
+            }
+            else if (url.includes("pending")) {
+                loadDataTable("pending");
+            }
+            else if (url.includes("approved")) {
+                loadDataTable("approved");
+            }
+            else {
+                loadDataTable("all");
+            }
+        });
+
+        var dataTable;
+
+        function loadDataTable(status) {
+            dataTable = $('#tblData').DataTable({
+                "ajax": {
+                    url: '/order/getall?status=' + status,
+                    dataSrc: 'data.$values'
+                },
+                "columns": [
+                    { "data": "id", "width": "5%" },
+                    { "data": "name", "width": "20%" },
+                    { "data": "applicationUserPhoneNumber", "width": "15%" },
+                    { "data": "applicationUserEmail", "width": "18%" },
+                    { "data": "orderStatus", "width": "10%" },
+                    { "data": "orderTotal", "width": "10%" },
+                    {
+                        "data": "id",
+                        "render": function (data) {
+                            return `<a href="/order/details?orderid=${data}" class="btn btn-info m-2"><i class="bi bi-pencil"></i></a>`;
+                        },
+                        "width": "10%"
+                    }
+                ],
+                "language": {
+                    "emptyTable": "No data available"
+                }
+            });
+        }
+    </script>
+}

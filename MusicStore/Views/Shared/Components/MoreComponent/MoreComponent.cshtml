@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MusicStoreData.Models.CMS.More>
+
+@{
+    ViewData["Title"] = "More section - Navigation";
+}
+
+<li class="nav-item dropdown">
+    @foreach (var item in Model.Where(m => m.Position == 1))
+    {
+        <span class="nav-link dropdown-toggle text-light">
+            <span>@item.Name</span>
+        </span>
+
+    }
+
+    <ul class="dropdown-menu">
+        @foreach (var item in Model.Where(m => m.Position != 1))
+        {
+            <div class="fw-bold">
+                <a asp-action="@item.Descriptions" class="dropdown-item" asp-controller="Home" asp-route-id="@item.Id">
+                    @item.Name
+                </a>
+            </div>
+        }
+    </ul>
+</li>

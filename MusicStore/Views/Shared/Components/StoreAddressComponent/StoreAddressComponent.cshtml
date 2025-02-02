@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MusicStoreData.Models.CMS.MusicStoreAddress>
+@{
+    ViewData["Title"] = "Music Store Address";
+}
+ 
+@foreach (var address in Model)
+{
+    @if(address.IsItCurrentStore)
+    {
+    <div class="col-md-4 col-sm-6 col-xs-12 mx-auto mt-3 text-center text-md-left">
+        <h5 class="text-uppercase mb-4 font-weight-bold">Address</h5>
+        <p>@address.Descriptions</p>
+        <p>@address.Address, @address.Address2</p>
+        <p>@address.Address2, @address.PostCode</p>
+        <p>@address.Country</p>
+        <p><i class="bi bi-telephone"></i> @address.PhoneNumber</p>
+        <p><i class="bi bi-envelope"></i> @address.EmailAdres</p>
+    </div>
+    }
+}
